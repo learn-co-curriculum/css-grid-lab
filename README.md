@@ -166,7 +166,7 @@ using `grid-auto-columns` and `grid-auto-rows`. These properties can take in
 a length, or a unit such as `fr`, and apply this as the default for all cells
 in a grid. So, for instance, if we added `grid-auto-rows: 50px;` to our
 `.grid-container` class, our grid will shrink a bit, as each row will now be
-exactly 50 pixels tall.
+exactly 50 pixels tall. However, this will only work if we remove the `grid-template-rows` property; the same is true for `grid-auto-columns` and `grid-template-columns`. (If you try this, be sure to add the `grid-template-rows` and `grid-template-columns` settings back in, before moving on to the next example.)
 
 #### `grid-gap`
 
