@@ -1,15 +1,15 @@
 # CSS Grid Lab
 
-## Problem Statement
+## Learning Goals
+
+- Create a CSS Grid layout.
+- Identify CSS Grid properties.
+
+## Introduction
 
 There are various ways to build a responsive website layout. Choosing one can be
 confusing and implementing it can be complicated. The best solution is one that
 is quick, structured and comprehensive. Enter CSS Grid.
-
-## Objectives
-
-1. Create a CSS Grid layout
-2. Identify CSS Grid properties
 
 ## Create a CSS Grid Layout
 
@@ -25,12 +25,11 @@ the stretching and shrinking of elements by aligning them to rows and columns.
 Grid is designed for displaying content in two directions, whereas flexbox is
 designed for displaying in one direction.
 
-We're going to dive straight in and set up a grid, then discuss the
-properties involved. We're starting out with some basic code in our `index.html`
-and `index.css` files. Open up the `index.html` in a browser tab, or if you're
-using the Learn IDE, run `httpserver` and navigate to the IP address provided.
-Currently, in our HTML, we have one div with a class `grid-container`, and
-twelve divs inside of it.
+We're going to dive straight in and set up a grid, then discuss the properties
+involved. We're starting out with some basic code in our `index.html` and
+`index.css` files. Open up the `index.html` in a browser tab. Currently, in our
+HTML, we have one div with a class `grid-container`, and twelve divs inside of
+it.
 
 If we look at the page in our browser, it is displaying the twelve divs,
 stacked and filling the width of the screen. To turn this into a grid, we
@@ -44,7 +43,7 @@ effectively treating each div as a _row_ in one _column_.
 To give this grid a second dimension, we just need to add one property. Just
 below `display: grid` in the `grid-container` class, add in:
 
-```
+```css
 grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;
 ```
 
@@ -86,10 +85,10 @@ five columns will produce three rows, with three empty cells at the end.
 
 ## Identify CSS Grid Properties
 
-Before we do anything else to our grid, let's talk about the specific properties CSS
-Grid provides.
+Before we do anything else to our grid, let's talk about the specific properties
+CSS Grid provides.
 
-#### `display: grid`
+### `display: grid`
 
 Any time we want to implement a CSS grid, we must define it within the
 `display` property of the parent element. This causes the browser to interpret
@@ -97,7 +96,7 @@ all child elements of the parent to align to a grid. Child elements do not
 need to have any height or width settings; they will stretch to fill the space
 of their cells automatically.
 
-#### `grid-template`
+### `grid-template`
 
 The `grid-template` property is actually shorthand for two other properties,
 `grid-template-columns` and `grid-template-rows`. These can be defined
@@ -109,24 +108,24 @@ will create as many rows as needed.
 
 There are a number of units we can use in these template properties:
 
-* `fr` - Represents a _fraction_ unit. Using `fr` will set a cell's width or
+- `fr` - Represents a _fraction_ unit. Using `fr` will set a cell's width or
   height based on the total number of fractions used. A setting of
   `1fr 2fr 1fr 1fr` will result in each fraction being 20% of grid container,
-  with the second cell being twice as large
-* `%` - You can use percentages for each row or column in a template. These will
+  with the second cell being twice as large.
+- `%` - You can use percentages for each row or column in a template. These will
   act similar to `fr` units. It is possible to mix and match units in these
-  templates
-* `px` - Cells can be given a set width and height using the pixel unit. This
+  templates.
+- `px` - Cells can be given a set width and height using the pixel unit. This
   can be helpful when you're creating more complex grids and want one row or
-  column to stay the same size
-* `auto` - The `auto` value can be used as the default value, but can also be
+  column to stay the same size.
+- `auto` - The `auto` value can be used as the default value, but can also be
   used to set specific columns and rows. This works well with `px` and `%`
   units, so if we were to define `grid-template-columns` as `50px auto 25%`, we
   would get a three column grid where the first column is always 50 pixels wide,
   the last column is always 25% of the total width of our container, and the
-  middle column will fill the remaining space
+  middle column will fill the remaining space.
 
-##### `repeat`
+### `repeat`
 
 In addition to these, the template properties have a unique setting, `repeat`,
 that makes definitions a little simpler. The `repeat` setting takes in two
@@ -138,7 +137,7 @@ our original `grid-template` using `repeat`, it would look like:
 grid-template: repeat(4, 1fr) / repeat(3, 1fr)
 ```
 
-##### `[linenames]`
+### `[linenames]`
 
 There is one more feature of the template properties worth exploring: when
 defining a template of rows or columns, it is possible to give names to
@@ -148,7 +147,7 @@ the unit values we're assigning, surrounded by square brackets, `[]`.
 For example, if we wanted the first row of our grid to be where our 'header'
 will go, we might write the following:
 
-```
+```css
 grid-template-rows: [header-start] 1fr [header-end] 1fr 1fr 1fr;
 grid-template-columns: 1fr 1fr 1fr;
 
@@ -159,7 +158,7 @@ grid-template: [header-start] 1fr [header-end] 1fr 1fr 1fr / 1fr 1fr 1fr;
 
 The use of naming lines like this will become clearer later in this lesson.
 
-#### `grid-auto-columns` and `grid-auto-rows`
+### `grid-auto-columns` and `grid-auto-rows`
 
 If we need, we can also choose to define default sizes for our rows and grids
 using `grid-auto-columns` and `grid-auto-rows`. These properties can take in
@@ -168,18 +167,19 @@ in a grid. So, for instance, if we added `grid-auto-rows: 50px;` to our
 `.grid-container` class, our grid will shrink a bit, as each row will now be
 exactly 50 pixels tall.
 
-#### `grid-gap`
+### `grid-gap`
 
 There is one other property we can choose to set on the parent element:
 `grid-gap`. This property defines how much space is added in between cells. Go
 back into our `index.css` file and add `grid-gap: 5px` to the `grid-container`
 class. On our webpage, you'll see that each cell is now separated with
-whitespace. Note that when using `grid-gap`, the cells will shrink a little to still fit
-in the container. The `grid-gap` property can read pixel or percentage values.
+whitespace. Note that when using `grid-gap`, the cells will shrink a little to
+still fit in the container. The `grid-gap` property can read pixel or percentage
+values.
 
-### Adding Grid Properties to Child Elements
+## Adding Grid Properties to Child Elements
 
-#### `grid-column-start`, `grid-column-end`, `grid-row-start`, and `grid-row-end`
+### `grid-column-start`, `grid-column-end`, `grid-row-start`, and `grid-row-end`
 
 So far, all of our properties have been assigned to the parent element of a
 grid, but we can also add some properties to child elements to control how each
@@ -237,7 +237,7 @@ to the third.
 Setting `grid-row-end` to `7` seems a little excessive, so let's set `bigItem`
 to be a nice 2 x 2 cell:
 
-```
+```css
 .bigItem {
   grid-row-start: 2;
   grid-row-end: 4;
@@ -246,14 +246,14 @@ to be a nice 2 x 2 cell:
 }
 ```
 
-#### `grid-column`, `grid-row` and `grid-area`
+### `grid-column`, `grid-row` and `grid-area`
 
 The `grid-column-start`, `grid-column-end`, `grid-row-start`, and
 `grid-row-end` are frequently used in conjunction, so CSS has provided
 shorthand alternatives: `grid-column` and `grid-row`. We can replace the
 existing `.bigItem` class with the following for the same effect:
 
-```
+```css
 .bigItem {
   grid-row: 2 / 4;
   grid-column: 2 / 4;
@@ -268,13 +268,13 @@ property takes in _four_ values. In order, they are the start position for
 row, the start position for column, the end position for row, and the end
 position for column:
 
-```
+```css
 grid-area: <grid-row-start> / <grid-column-start> / <grid-row-end> / <grid-column-end>
 ```
 
 We can then rewrite our `.bigItem` class as one line:
 
-```
+```css
 .bigItem {
   grid-area: 2 / 2 / 4 / 4;
 }
@@ -285,7 +285,7 @@ properties? This is where these names become useful. If we had names for the
 beginning and end rows of a page footer, for instance, we could declare a
 `grid-area` for our footer as:
 
-```
+```css
 grid-area: footer-start / 1 / footer-end / 4
 ```
 
@@ -295,7 +295,7 @@ taking the time to name important lines in your layout makes it easier to
 position grid elements to them without having to look up or count the number of
 lines.
 
-#### `justify-self` and `align-self`
+### `justify-self` and `align-self`
 
 Grid has two additional properties that affect the contents of grid elements.
 The `justify-self` and `align-self` properties define where, within a grid
@@ -305,7 +305,7 @@ from automatically expanding an element to fill the entire cell.
 Let's add to our `.bigItem` class to see this in action by changing the class
 properties to the following:
 
-```
+```css
 .bigItem {
   grid-area: 2 / 2 / 4 / 4;
   height: 50%;
@@ -341,14 +341,11 @@ overriding template rules.
 
 The tests in this lesson are in place to practice what we have discussed.
 
-* In `index.css`, the `.gridContainer` class should have `display` and
-`grid-template` properties correctly assigned
-* In `index.css`, there should be a `.bigItem` class with a `grid-area`
-property assigned
-* In `index.html`, the `bigItem` class should be assigned to one of the divs
-
-Run `learn` to confirm you have correctly applied CSS Grid properties. If the
-test pass, enter `learn submit`. You'll then be prompted to move on!
+- In `index.css`, the `.gridContainer` class should have `display` and
+`grid-template` properties correctly assigned.
+- In `index.css`, there should be a `.bigItem` class with a `grid-area` property
+assigned.
+- In `index.html`, the `bigItem` class should be assigned to one of the divs.
 
 ## Conclusion
 
